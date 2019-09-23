@@ -1,0 +1,10 @@
+Installing Git Guide
+If you already have a local repository delete it ( there is nothing in it anyways its easier / if you have important data just copy it somewhere else where you
+know it doesnt belong into the repo.)
+
+1. find or create a online git repository.
+2. install the Git Extension in Visual Studio under:
+Tools -> Extensions and Updates -> Online tab on the left-> GitHub Extension for VisualStudio
+3. Go to Visual Studio Team Explorer
+4. Under GitHub connect and Clone your Project from github
+5. In our case select the Organisations gasoline Project and select a local path for the local repository
