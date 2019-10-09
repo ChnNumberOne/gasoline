@@ -2,16 +2,19 @@ namespace src
 {
     public class FuelTank
     {
-        // fields / properties
+        // constructor
+        public FuelTank(string fuelType)
+        {
+            this.fuelType = fuelType;
+        }
+
+        // fields
 
         // the type of fuel in the fueltank
         private Fueltype fuelType;
 
         // the amount of fuel in the fueltank
         private int fuelAmount;
-
-        // the percentage Level of the fueltank
-        private float fillPercentage;
 
         // the top fill warn level of the fueltank ( e.g. do something above 70% fill)
         private int topFillWarn;
@@ -22,40 +25,47 @@ namespace src
         // the maximum capacity the tank can hold in fuel
         private int fuelCapacity;
 
+  
 
-        // functionality
-
-
-        // these 2 functions are for adding and subtracting fuel from the tank.
-        // They check if the action is valid and return a boolean if it has been executed or not.
-        public bool addFuelToTank(int amount)
+        // Adds an amount to the fuel tank, if the fuel doesnt fit its filled to capacity and the added value is returned
+        public int AddFuelToTank(int amount)
         {
-            // check if the amount fits in the tank
-
-            // add the amount to the tank
-
-            // update Percentage
-            calculateFillPercentage();
-
-            // return a message if failed or successed
+            if (this.fuelAmount + amount < this.fuelCapacity )
+            {
+                this.fuelAmount += amount;
+                return amount;
+            }
+           
+            int fillableAmount = this.fuelCapacity - this.fuelAmount;
+            this.fuelAmount += fillableAmount;
+            return fillableAmount;
+                
+            
+           
         }
 
-        public bool drainFuelFromTank(int amount)
+        // Takes an amount from the fuel tank, if the amount is too big it takes the remainder and the drained value is returned
+        public int DrainFuelFromTank(int amount)
         {
-            // check if there is enough fuel to get
+            if(this.fuelAmount - amount >= 0)
+            {
+                this.fuelAmount -= amount;
+                return amount;
+            }
+     
+            int drainableAmount = amount - this.fuelAmount;
+            this.fuelAmount -= drainableAmount;
+            return drainableAmount;
+      
 
-            // drain fuel from tank
-
-            // update the Percentage
-            calculateFillPercentage();
-
-            // return a message if failed or successfull
         }
 
-        // update the percentage value for this tanks currently holded fuel
-        public void calculateFillPercentage()
+        // returns the fill percentage of the fueltank
+        public float getFillPercentage()
         {
-            this.fuelAmount = this.fuelAmount / this.fuelCapacity * 100;
+            return this.fuelAmount / this.fuelCapacity * 100;
         }
+
+
     }
 }
